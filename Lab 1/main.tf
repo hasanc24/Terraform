@@ -88,3 +88,11 @@ route_table_id = aws_route_table.private_route_table.id
   subnet_id      = each.value.id
 }
 
+#Create Internet Gateway
+resource "aws_internet_gateway" "internet_gateway" {
+  vpc_id = aws_vpc.vpc.id
+  tags = {
+    Name = "demo_igw"
+  }
+}
+
