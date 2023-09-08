@@ -108,3 +108,4 @@ resource "aws_nat_gateway" "nat_gateway" {
   tags = {
     Name = "demo_nat_gateway"
   }
+}
