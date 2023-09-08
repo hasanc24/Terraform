@@ -31,15 +31,40 @@ resource "aws_subnet" "private_subnets" {
 
 #Deploy the public subnets
 resource "aws_subnet" "public_subnets" {
-for_each = var.public_subnets
-vpc_id = aws_vpc.vpc.id
-cidr_block = cidrsubnet(var.vpc_cidr, 8, each.value + 100)
-availability_zone       = tolist(data.aws_availability_zones.available.
-   names)[each.value]
-map_public_ip_on_launch = true
-tags = {
-  Name      = each.key
-Terraform = "true"
+  for_each   = var.public_subnets
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = cidrsubnet(var.vpc_cidr, 8, each.value + 100)
+  availability_zone = tolist(data.aws_availability_zones.available.
+  names)[each.value]
+  map_public_ip_on_launch = true
+  tags = {
+    Name      = each.key
+    Terraform = "true"
   }
+}
+
+#Create route tables for public and private subnets resource "aws_route_table" "public_route_table" {
+vpc_id = aws_vpc.vpc.id
+route {
+  cidr_block     = "0.0.0.0/0"
+  gateway_id     = aws_internet_gateway.internet_gateway.id
+#nat_gateway_id = aws_nat_gateway.nat_gateway.id
+}
+tags = {
+  Name      = "demo_public_rtb"
+  Terraform = "true"
+}
+}
+resource "aws_route_table" "private_route_table" {
+  vpc_id = aws_vpc.vpc.id
+  route {
+cidr_block     = "0.0.0.0/0"
+# gateway_id     = aws_internet_gateway.internet_gateway.id
+  nat_gateway_id = aws_nat_gateway.nat_gateway.id
+}
+tags = {
+  Name      = "demo_private_rtb"
+  Terraform = "true"
+}
 }
 
