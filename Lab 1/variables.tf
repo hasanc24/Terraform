@@ -25,3 +25,4 @@ variable "public_subnets" { default = {
     "public_subnet_3" = 3
 }
 }
+
