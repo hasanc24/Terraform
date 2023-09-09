@@ -124,3 +124,13 @@ filter {
 }
 owners = ["099720109477"]
 }
+
+# Terraform Resource Block - To Build EC2 instance in Public Subnet
+resource "aws_instance" "web_server" {
+ami           = data.aws_ami.ubuntu.id
+instance_type = "t2.micro"
+subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
+tags = {
+  Name = "Ubuntu EC2 Server"
+}
+}
