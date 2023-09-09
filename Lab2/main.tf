@@ -134,4 +134,3 @@ resource "aws_instance" "web_server" {
   tags = {
     Name = "Ubuntu EC2 Server"
   }
-}
