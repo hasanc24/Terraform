@@ -9,16 +9,17 @@ data "aws_region" "current" {}
 
 #Retrieve the list of AZs in the current AWS region
 data "aws_ami" "ubuntu" {
-  most_recent = true 
+  most_recent = true
   filter {
-    name = "name"
+    name  = "name"
     value = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
-  
-  filter {
-    name = "virtualization-type"
-    values = ["hvm"]
-  }
+}
+
+filter {
+  name   = "virtualization-type"
+  values = ["hvm"]
+}
 
 #Define the VPC
 resource "aws_vpc" "vpc" {
@@ -127,27 +128,27 @@ resource "aws_nat_gateway" "nat_gateway" {
 
 #Terraform Resource block - to build EC2 instance in public subnet
 resource "aws_instance" "web" {
-    ami = "ami-01c647eace872fc02"
-    instance_type = "t2.micro"
-    subnet_id = "subnet-04324f18aa4cf07de"
-    vpc_security_group_ids = ["sg-07e6ad8460206c624"]
-    
-    tags = {
-      "Terraform" = "true"
-    }
+  ami                    = "ami-01c647eace872fc02"
+  instance_type          = "t2.micro"
+  subnet_id              = "subnet-04324f18aa4cf07de"
+  vpc_security_group_ids = ["sg-07e6ad8460206c624"]
+
+  tags = {
+    "Terraform" = "true"
+  }
 }
 
 resource "aws_s3_bucket" "my-new-S3-bucket" {
   bucket = "my-new-tf-test-bucket-mamba"
   tags = {
-    Name = "My S3 Bucket"
+    Name    = "My S3 Bucket"
     Purpose = "Intro to Resource Blocks Lab"
+  }
 }
-}
-  
-resource "aws_s3_bucket_ownership_controls" "my_new_bucket_acl" { 
-bucket = aws_s3_bucket.my-new-S3-bucket.id
-rule {
+
+resource "aws_s3_bucket_ownership_controls" "my_new_bucket_acl" {
+  bucket = aws_s3_bucket.my-new-S3-bucket.id
+  rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
