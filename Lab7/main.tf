@@ -10,15 +10,16 @@ data "aws_region" "current" {}
 #Retrieve the list of AZs in the current AWS region
 data "aws_ami" "ubuntu" {
   most_recent = true
+  
   filter {
     name  = "name"
-    value = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
-}
 
 filter {
   name   = "virtualization-type"
   values = ["hvm"]
+}
 }
 
 #Define the VPC
@@ -164,6 +165,7 @@ resource "aws_security_group" "my-new-security-group" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  
   tags = {
     Name    = "web_server_inbound"
     Purpose = "Intro to Resource Blocks Lab"
