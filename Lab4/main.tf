@@ -113,3 +113,12 @@ resource "aws_nat_gateway" "nat_gateway" {
   }
 }
 
+resource "aws_instance" "web" {
+    ami = "ami-01c647eace872fc02"
+    instance_type = "t2.micro"
+    subnet_id = "subnet-04324f18aa4cf07de"
+    vpc_security_groups_ids = "sg-07e6ad8460206c624"
+    tags = {
+      "Terraform" = "true"
+    }
+}
