@@ -7,6 +7,20 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 data "aws_region" "current" {}
 
+#Terraform Data Block - Lookup Ubuntu 20.04
+data "aws_ami" "ubuntu"
+most recent = true
+
+filter {
+  name = "name"
+  values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+}
+
+filter {
+  name = "virtuallization-type"
+  values = ["hvm"]
+}
+
 #Define the VPC
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
