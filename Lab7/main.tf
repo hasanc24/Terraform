@@ -172,3 +172,6 @@ resource "aws_security_group" "my-new-security-group" {
   }
 }
 
+resource "random_id" "randomness" {
+  byte_length = 16
+}
