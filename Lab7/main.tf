@@ -125,6 +125,7 @@ resource "aws_nat_gateway" "nat_gateway" {
   }
 }
 
+#Terraform Resource block - to build EC2 instance in public subnet
 resource "aws_instance" "web" {
     ami = "ami-01c647eace872fc02"
     instance_type = "t2.micro"
@@ -134,4 +135,16 @@ resource "aws_instance" "web" {
     tags = {
       "Terraform" = "true"
     }
+}
+
+resource "aws_s3_bucket" "my-new-S3-bucket" {
+  bucket = "my-new-tf-test-bucket-bryan"
+tags = {
+    Name = "My S3 Bucket"
+    Purpose = "Intro to Resource Blocks Lab"
+} }
+resource "aws_s3_bucket_ownership_controls" "my_new_bucket_acl" { bucket = aws_s3_bucket.my-new-S3-bucket.id
+rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
 }
