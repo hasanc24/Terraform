@@ -8,24 +8,24 @@ data "aws_availability_zones" "available" {}
 data "aws_region" "current" {}
 
 locals {
-  team = "api_mgmt_dev"
-application = "corp_api"
+  team        = "api_mgmt_dev"
+  application = "corp_api"
   server_name = "ec2-${var.environment}-api-${var.variables_sub_az}"
 }
 
 #Retrieve the list of AZs in the current AWS region
 data "aws_ami" "ubuntu" {
   most_recent = true
-  
+
   filter {
-    name  = "name"
+    name   = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
 
-filter {
-  name   = "virtualization-type"
-  values = ["hvm"]
-}
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 }
 
 #Define the VPC
@@ -171,7 +171,7 @@ resource "aws_security_group" "my-new-security-group" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   tags = {
     Name    = "web_server_inbound"
     Purpose = "Intro to Resource Blocks Lab"
