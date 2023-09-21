@@ -12,6 +12,11 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+provider "aws" {
+  profile = "default"
+  region = "eu-west-1"
+}
+
 variable "instance_type" {
   type = string
 }
