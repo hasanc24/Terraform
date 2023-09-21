@@ -8,19 +8,16 @@ terraform {
 }
 
 provider "aws" {
-  # Configuration options
+profile = "default"
+  region  = "us-east-1"
 }
 
-provider "aws" {
-  region  = "us-west-2"
-}
-
-resource "aws_instance" "app_server" {
-  ami           = "ami-830c94e3"
+resource "aws_instance" "my_server" {
+  ami           = "ami-03a6eaae9938c858c"
   instance_type = "t2.micro"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = "MyServer"
   }
 }
 
