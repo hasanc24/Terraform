@@ -37,7 +37,9 @@ resource "aws_instance" "my_server" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  provider = aws.eu
+  providers = {
+    aws.eu
+  }
 
   name = "my-vpc"
   cidr = "10.0.0.0/16"
