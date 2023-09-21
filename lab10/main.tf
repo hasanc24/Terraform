@@ -25,7 +25,7 @@ resource "aws_instance" "my_server" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "MyServer-%{local.project_name}"
+    Name = "MyServer-%{locals.project_name}"
   }
 }
 
