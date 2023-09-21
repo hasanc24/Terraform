@@ -12,7 +12,7 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-variable {
+variable "instance_type"{
   type = string
 }
 
