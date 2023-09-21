@@ -16,13 +16,16 @@ variable "instance_type" {
   type = string
 }
 
+locals {
+  project_name = "BlackMamba"
+  }
 
 resource "aws_instance" "my_server" {
   ami           = "ami-03a6eaae9938c858c"
   instance_type = var.instance_type
 
   tags = {
-    Name = "MyServer"
+    Name = "MyServer-%{local.project_name}"
   }
 }
 
