@@ -14,7 +14,7 @@ provider "aws" {
 
 resource "aws_instance" "my_server" {
   ami           = "ami-03a6eaae9938c858c"
-  instance_type = "t2.micro"
+  instance_type = "t2.nano"
 
   tags = {
     Name = "MyServer"
