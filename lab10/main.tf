@@ -14,8 +14,8 @@ provider "aws" {
 
 provider "aws" {
   profile = "default"
-  region = "eu-west-1"
-  alias = "eu"
+  region  = "eu-west-1"
+  alias   = "eu"
 }
 
 variable "instance_type" {
@@ -52,7 +52,7 @@ module "vpc" {
   enable_vpn_gateway = true
 
   tags = {
-    Terraform = "true"
+    Terraform   = "true"
     Environment = "dev"
   }
 }
