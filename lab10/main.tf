@@ -14,7 +14,6 @@ provider "aws" {
 
 variable {
   type = string
-  
 }
 
 
