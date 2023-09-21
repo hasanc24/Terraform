@@ -18,7 +18,7 @@ variable "instance_type" {
 
 locals {
   project_name = "BlackMamba"
-  }
+}
 
 resource "aws_instance" "my_server" {
   ami           = "ami-03a6eaae9938c858c"
@@ -30,5 +30,5 @@ resource "aws_instance" "my_server" {
 }
 
 output "instance_ip_addr" {
-  value = aws_instance.server.public_ip
+  value = aws_instance.my_server.public_ip
 }
