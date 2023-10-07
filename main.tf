@@ -29,3 +29,16 @@ resource "aws_subnet" "private_subnets" {
     }
 }
 
+# Deploy the Public subnets
+resource "aws_subnet" "public_subnets" {
+    for_each = var.public_subnets
+    vpc_id = aws_vpc.vpc.id
+    cidr_block = cidrsubnet(var.vpc_cidr, 8, each.value +100)
+    availablity_zone = tolist(data.aws_availablity_zones.available.names)[each.value]
+    map_public_ip_on_launch = true 
+    tags = {
+        Name = each.key
+        Terraform = "true"
+    }
+}
+
