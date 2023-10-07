@@ -137,7 +137,7 @@ resource "aws_instance" "web_server" {
 }
 
 resource "aws_instance" "web" {
-    ami = "<AMI>"
+    ami = "ami-067d1e60475437da2"
     instance_type = "t2.micro"
     subnet_id = "<SUBNET>"
     vpc_security_groups_ids = ["<Security_group>"]
