@@ -113,7 +113,8 @@ resource "aws_nat_gateway" "nat_gateway" {
 }
 
 # Terraform Data Block - To Lookup Latest Ubuntu 20.04 AMI Image
-data "aws_ami" "ubuntu" { most_recent = true
+data "aws_ami" "ubuntu" { 
+most_recent = true
   filter {
     name   = "name"
     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
