@@ -139,7 +139,7 @@ resource "aws_instance" "web_server" {
 resource "aws_instance" "web" {
     ami = "ami-067d1e60475437da2"
     instance_type = "t2.micro"
-    subnet_id = "<SUBNET>"
+    subnet_id = aws_subnet.public_subnets["public_subnet_1"].id
     vpc_security_groups_ids = ["<Security_group>"]
     tags = {
         "identity" = "<IDENTITY>"
