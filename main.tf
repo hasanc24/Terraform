@@ -140,7 +140,7 @@ resource "aws_instance" "web" {
   ami                     = "ami-067d1e60475437da2"
   instance_type           = "t2.micro"
   subnet_id               = aws_subnet.public_subnets["public_subnet_1"].id
-  vpc_security_groups_ids = ["sg-0ff78f5130ad8c2b5"]
+  vpc_security_group_ids = ["sg-0ff78f5130ad8c2b5"]
   tags = {
     "Terraform" = "True"
   }
