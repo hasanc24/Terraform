@@ -9,7 +9,7 @@ data "aws_region" "current" {}
 
 # Define the VPC 
 resource "aws_vpc" "vpc" {
-  cidr_block = var.vpc.cidr
+  cidr_block = var.vpc_cidr
   tags = {
     Name        = var.vpc_name
     Environment = "demo_environment"
