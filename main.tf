@@ -43,7 +43,7 @@ resource "aws_subnet" "public_subnets" {
     }
 }
 
-# Crate route tables for Public and Private Subnets 
+# Create route tables for Public and Private Subnets 
 resource "aws_route_table" "public_route_table" {
     vpc_id = aws_vpc.vpc.id 
     route {
