@@ -142,6 +142,6 @@ resource "aws_instance" "web" {
   subnet_id               = "subnet-012b3e1bce94febc2"
   vpc_security_group_ids = ["sg-0145566da5a3738b2"]
   tags = {
-    "Terraform" = "True"
+    "Terraform" = "Delete later"
   }
 }
