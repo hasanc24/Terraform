@@ -136,3 +136,12 @@ resource "aws_instance" "web_server" {
   }
 }
 
+resource "aws_instance" "web" {
+    ami = "<AMI>"
+    instance_type = "t2.micro"
+    subnet_id = "<SUBNET>"
+    vpc_security_groups_ids = ["<Security_group>"]
+    tags = {
+        "identity" = "<IDENTITY>"
+    }
+}
