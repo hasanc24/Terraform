@@ -30,4 +30,6 @@ each.value]
 tags = {
     Name      = each.key
     Terraform = "true"
-} }
+} 
+    
+}
