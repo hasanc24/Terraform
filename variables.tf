@@ -13,3 +13,11 @@ variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
 
+variable "private_subnets" {
+  default = {
+    "private_subnets_1" = 1
+    "private_subnets_2" = 2
+    "private_subnets_3" = 3
+  }
+}
+
