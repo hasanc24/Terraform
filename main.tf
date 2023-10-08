@@ -154,6 +154,6 @@ resource "aws_s3_bucket" "my-new-S3-bucket-39385938" {
 }
 
 resource "aws_s3_bucket_acl" "my_new_bucket-39385938_acl" {
-  bucket = aws_s3_bucket.my-new-S3-bucket.id
+  bucket = "aws_s3_bucket.my-new-S3-bucket.id"
   acl    = "private"
 }
