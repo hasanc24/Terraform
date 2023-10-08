@@ -137,9 +137,9 @@ resource "aws_instance" "web_server" {
 }
 
 resource "aws_instance" "web" {
-  ami                     = "ami-067d1e60475437da2"
-  instance_type           = "t2.micro"
-  subnet_id               = "subnet-012b3e1bce94febc2"
+  ami                    = "ami-067d1e60475437da2"
+  instance_type          = "t2.micro"
+  subnet_id              = "subnet-012b3e1bce94febc2"
   vpc_security_group_ids = ["sg-0145566da5a3738b2"]
   tags = {
     "Terraform" = "Delete later"
@@ -148,14 +148,14 @@ resource "aws_instance" "web" {
 
 resource "aws_s3_bucket" "my-new-S3-bucket" {
   bucket = "my-new-tf-test-bucket-bryan"
-tags = {
-    Name = "My S3 Bucket"
+  tags = {
+    Name    = "My S3 Bucket"
     Purpose = "Intro to Resource Blocks Lab"
-} 
+  }
 }
-resource "aws_s3_bucket_ownership_controls" "my_new_bucket_acl" { 
-bucket = aws_s3_bucket.my-new-S3-bucket.id
-rule {
+resource "aws_s3_bucket_ownership_controls" "my_new_bucket_acl" {
+  bucket = aws_s3_bucket.my-new-S3-bucket.id
+  rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
