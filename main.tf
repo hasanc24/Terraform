@@ -157,5 +157,3 @@ resource "aws_s3_bucket_acl" "my_new_bucket_acl" {
   bucket = aws_s3_bucket.my-new-S3-bucket.id
   acl    = "private"
 }
-
-resource "aws"
