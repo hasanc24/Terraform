@@ -93,7 +93,7 @@ resource "aws_internet_gateway" "internet_gateway" {
 
 #Create EIP for NAT Gateway
 resource "aws_eip" "nat_gateway_eip" {
-  domain     = "vpc"
+  domain     = ""
   depends_on = [aws_internet_gateway.internet_gateway]
   tags = {
     Name = "demo_igw_eip"
