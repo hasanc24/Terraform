@@ -145,7 +145,7 @@ resource "aws_instance" "web" {
   }
 }
 
-resource "aws_s3_bucket" "my-new-S3-bucket" {
+resource "aws_s3_bucket" "my-new-S3-bucket-39385938" {
   bucket = "my-new-tf-test-bucket-bryan"
   tags = {
     Name    = "My S3 Bucket"
@@ -157,3 +157,5 @@ resource "aws_s3_bucket_acl" "my_new_bucket_acl" {
   bucket = aws_s3_bucket.my-new-S3-bucket.id
   acl    = "private"
 }
+
+resource "aws"
