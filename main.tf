@@ -177,8 +177,8 @@ resource "aws_security_group" "my-new-security-group" {
 
 resource "aws_subnet" "variables-subnet" {
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = "var.variables_sub_cidr
-  availability_zone       = "us-east-1a"
+  cidr_block              = var.variables_sub_cidr
+  availability_zone       = var.varitables_sub_az
   map_public_ip_on_launch = true
   tags = {
     Name      = "sub-variables-us-east-1a"
