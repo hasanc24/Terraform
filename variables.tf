@@ -39,4 +39,5 @@ description = "Availability Zone used Variables Subnet"
 }
 variable "variables_sub_auto_ip" {
   description = "Set Automatic IP Assigment for Variables Subnet"
-type = bool }
+type = bool 
+}
