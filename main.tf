@@ -153,7 +153,7 @@ resource "aws_instance" "web" {
   }
 }
 
-resource "aws_s3_bucket" "hasanc_bucket-1212312313" {
+resource "aws_s3_bucket" "hasanc1212312313" {
   bucket = "my-new-tf-test-bucket-bryan"
   tags = {
     Name    = "My S3 Bucket"
@@ -161,7 +161,7 @@ resource "aws_s3_bucket" "hasanc_bucket-1212312313" {
   }
 }
 
-resource "aws_s3_bucket_acl" "hasanc_bucket-1212312313" {
+resource "aws_s3_bucket_acl" "hasanc1212312313" {
   bucket = "aws_s3_bucket.my-new-S3-bucket.id"
   acl    = "private"
 }
