@@ -161,7 +161,7 @@ resource "aws_s3_bucket" "my-new-S3-bucket-hasanc10321981" {
   }
 }
 
-resource "aws_s3_bucket_acl" "my_new_bucket-hasanc10321981" {
+resource "aws_s3_bucket_acl" "my_new_bucket-hasanca-10321981" {
   bucket = "aws_s3_bucket.my-new-S3-bucket.id"
   acl    = "private"
 }
