@@ -147,7 +147,7 @@ resource "aws_instance" "web" {
   ami                    = "ami-067d1e60475437da2"
   instance_type          = "t2.micro"
   subnet_id              = "subnet-08cd606f3b751aa58"
-  vpc_security_group_ids = ["sg-0145566da5a3738b2"]
+  vpc_security_group_ids = ["sg-00a0ab9f7e338e0de"]
   tags = {
     "Terraform" = "Delete later"
   }
