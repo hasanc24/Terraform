@@ -153,7 +153,7 @@ resource "aws_instance" "web" {
   }
 }
 
-resource "aws_s3_bucket" "my-new-S3-bucket-blackmamba24041xchashdefwf" {
+resource "aws_s3_bucket" "my-new-S3-bucket-blackmamba24041xchashdefwfg" {
   bucket = "my-new-tf-test-bucket-bryan"
   tags = {
     Name    = "My S3 Bucket"
