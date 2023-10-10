@@ -154,7 +154,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_s3_bucket" "hasanc1212312313" {
-  bucket = "my-new-tf-test-bucket-bryan"
+  bucket = "hasanc1212312313"
   tags = {
     Name    = "My S3 Bucket"
     Purpose = "Intro to Resource Blocks Lab"
