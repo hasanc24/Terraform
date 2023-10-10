@@ -153,7 +153,7 @@ resource "aws_instance" "web" {
   }
 }
 
-resource "aws_s3_bucket" "my-new-S3-bucket-blackmamba24041x" {
+resource "aws_s3_bucket" "my-new-S3-bucket-blackmamba24041xchashdefwf" {
   bucket = "my-new-tf-test-bucket-bryan"
   tags = {
     Name    = "My S3 Bucket"
@@ -161,7 +161,7 @@ resource "aws_s3_bucket" "my-new-S3-bucket-blackmamba24041x" {
   }
 }
 
-resource "aws_s3_bucket_acl" "my_new_bucket-blackmamba24041x" {
+resource "aws_s3_bucket_acl" "my_new_bucket-blackmamba24041xchashdefwf" {
   bucket = "aws_s3_bucket.my-new-S3-bucket.id"
   acl    = "private"
 }
