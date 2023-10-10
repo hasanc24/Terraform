@@ -184,12 +184,7 @@ resource "aws_security_group" "my-new-security-group" {
 }
 
 resource "aws_subnet" "variables-subnet" {
-  vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.variables_sub_cidr
-  availability_zone       = var.variables_sub_az
-  map_public_ip_on_launch = var.variables_sub_auto_ip
-  tags = {
-    Name      = "sub-variables-${var.variables_sub_az}"
-    Terraform = "true"
-  }
+  vpc_id = var.vpc_id
+  cidr_block = var.subnet_cidr_block
+  availability_zone = "us-east-1a"
 }
