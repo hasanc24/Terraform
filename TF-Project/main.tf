@@ -2,8 +2,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "My-Frist-VPC" {
   cidr_block = "10.0.0.0/16"
+    tags = {
+    Name = "Production-VPC"
+  }
 }
 
 resource "aws_instance" "My-First-Server" {
@@ -13,6 +16,7 @@ resource "aws_instance" "My-First-Server" {
     name = "My-First-Sever"
   }
 }
+
 
 
 
