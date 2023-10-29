@@ -9,7 +9,7 @@
 #9 Create Ubuntu server and install/enable apache2
 
 provider "aws" {
-  region     = "us-east-1"
+  region = "us-east-1"
 }
 
 #Create a VPC 
@@ -39,8 +39,8 @@ resource "aws_route_table" "prod-route-table" {
   }
 
   route {
-    ipv6_cidr_block        = "::/0"
-    gateway_id = aws_internet_gateway.gw.id
+    ipv6_cidr_block = "::/0"
+    gateway_id      = aws_internet_gateway.gw.id
   }
 
   tags = {
@@ -129,7 +129,7 @@ resource "aws_eip" "one" {
 #Create Ubuntu server and install/enable apache2
 resource "aws_instance" "web-server-instance" {
   ami               = "ami-0fc5d935ebf8bc3bc"
-  instance_type     = "t2.mirco"
+  instance_type     = "t2.micro"
   availability_zone = "us-east-1a"
   key_name          = "main-key"
 
