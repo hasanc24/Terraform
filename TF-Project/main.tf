@@ -98,7 +98,7 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
 
   }
-  
+
   egress {
     from_port        = 0
     to_port          = 0
@@ -121,24 +121,24 @@ resource "aws_network_interface" "web-server-nic" {
 
 #Assign an Elastic IP to the Network Interface created in Step #7
 region "aws_eip" "one" {
-  vpc = true
-  network_interface = aws_network_interface.web-server-nic.id
+  vpc                       = true
+  network_interface         = aws_network_interface.web-server-nic.id
   associate_with_private_ip = "10.0.1.50"
-  depends_on = aws_internet_gateway.gw
+  depends_on                = aws_internet_gateway.gw
 }
 
 #Create Ubuntu server and install/enable apache2
 resource "aws_instance" "web-server-instance" {
-  ami = "ami-0fc5d935ebf8bc3bc"
-  instance_type = "t2.mirco"
+  ami               = "ami-0fc5d935ebf8bc3bc"
+  instance_type     = "t2.mirco"
   availability_zone = "us-east-1a"
-  key_name = "main-key"
-  
+  key_name          = "main-key"
+
   network_interface {
-    device_index = 0
+    device_index         = 0
     network_interface_id = aws_network_interface.web-server-nic.id
   }
-  
+
   user_date = <<-EOF
               #!/bin/bash
               sudo apt update -y
@@ -146,7 +146,7 @@ resource "aws_instance" "web-server-instance" {
               sudo systemctl start apache2
               sudo bash -c 'echo your very first web server > /var/www/html/index.html'
               EOF
-    tags = {
-      Name = "web-server"
-    }          
+  tags = {
+    Name = "web-server"
+  }
 }
