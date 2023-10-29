@@ -9,10 +9,9 @@
 #9 Create Ubuntu server and install/enable apache2
 
 provider "aws" {
-  region     = "us-west-2"
-  access_key = "my-access-key"
-  secret_key = "my-secret-key"
+  region = "us-east-1"
 }
+
 #Create a VPC 
 resource "aws_vpc" "prod-vpc" {
   cidr_block = "10.0.0.0/16"
@@ -40,8 +39,8 @@ resource "aws_route_table" "prod-route-table" {
   }
 
   route {
-    ipv6_cidr_block        = "::/0"
-    egress_only_gateway_id = aws_internet_gateway.gw.id
+    ipv6_cidr_block = "::/0"
+    gateway_id      = aws_internet_gateway.gw.id
   }
 
   tags = {
@@ -98,7 +97,7 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
 
   }
-  
+
   egress {
     from_port        = 0
     to_port          = 0
@@ -120,10 +119,33 @@ resource "aws_network_interface" "web-server-nic" {
 }
 
 #Assign an Elastic IP to the Network Interface created in Step #7
-region "aws_eip" "one" {
-  vpc = true
-  network_interface = aws_network_interface.web-server-nic.id
+resource "aws_eip" "one" {
+  vpc                       = true
+  network_interface         = aws_network_interface.web-server-nic.id
   associate_with_private_ip = "10.0.1.50"
-  depends_on = aws_internet_gateway.gw
+  depends_on                = [aws_internet_gateway.gw]
 }
 
+#Create Ubuntu server and install/enable apache2
+resource "aws_instance" "web-server-instance" {
+  ami               = "ami-0fc5d935ebf8bc3bc"
+  instance_type     = "t2.micro"
+  availability_zone = "us-east-1a"
+  key_name          = "main-key"
+
+  network_interface {
+    device_index         = 0
+    network_interface_id = aws_network_interface.web-server-nic.id
+  }
+
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt update -y
+              sudo apt install apache2 -y
+              sudo systemctl start apache2
+              sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+              EOF
+  tags = {
+    Name = "web-server"
+  }
+}
