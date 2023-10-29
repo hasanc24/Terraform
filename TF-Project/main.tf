@@ -120,7 +120,7 @@ resource "aws_network_interface" "web-server-nic" {
 }
 
 #Assign an Elastic IP to the Network Interface created in Step #7
-region "aws_eip" "one" {
+resource "aws_eip" "one" {
   vpc                       = true
   network_interface         = aws_network_interface.web-server-nic.id
   associate_with_private_ip = "10.0.1.50"
