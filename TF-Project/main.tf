@@ -11,7 +11,7 @@ resource "aws_subnet" "subnet-1" {
   }
 }
 
-resource "aws_vpc" "My-Frist-VPC" {
+resource "aws_vpc" "first-vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
     Name = "Production"
@@ -26,6 +26,12 @@ resource "aws_instance" "My-First-Server" {
   }
 }
 
+resource "aws_vpc" "second-vpc" {
+  cidr_block = "10.0.0.0/16"
+  tags = {
+    Name = "Production"
+  }
+}
 
 
 
