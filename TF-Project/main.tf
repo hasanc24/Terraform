@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_subnet" "subnet-1" {
-  vpc_id     = aws_vpc.My-Frist-VPC.id
+  vpc_id     = aws_vpc.first-vpc.id
   cidr_block = "10.0.1.0/24"
 
   tags = {
@@ -29,10 +29,18 @@ resource "aws_instance" "My-First-Server" {
 resource "aws_vpc" "second-vpc" {
   cidr_block = "10.1.0.0/16"
   tags = {
-    Name = "Dev"
+    Name = "dev"
   }
 }
 
+resource "aws_subnet" "subnet-2" {
+  vpc_id     = aws_vpc.second-vpc.id
+  cidr_block = "10.1.1.0/24"
+
+  tags = {
+    Name = "dev-subnet"
+  }
+}
 
 
 
