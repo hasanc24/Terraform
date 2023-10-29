@@ -127,3 +127,26 @@ region "aws_eip" "one" {
   depends_on = aws_internet_gateway.gw
 }
 
+#Create Ubuntu server and install/enable apache2
+resource "aws_instance" "web-server-instance" {
+  ami = "ami-0fc5d935ebf8bc3bc"
+  instance_type = "t2.mirco"
+  availability_zone = "us-east-1a"
+  key_name = "main-key"
+  
+  network_interface {
+    device_index = 0
+    network_interface_id = aws_network_interface.web-server-nic.id
+  }
+  
+  user_date = <<-EOF
+              #!/bin/bash
+              sudo apt update -y
+              sudo apt install apache2 -y
+              sudo systemctl start apache2
+              sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+              EOF
+    tags = {
+      Name = "web-server"
+    }          
+}
