@@ -9,19 +9,42 @@
 #9 Create Ubuntu server and install/enable apache2
 
 provider "aws" {
-  region = "us-east-1"
+  region     = "us-west-2"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
 }
-
 #Create a VPC 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "prod-vpc" {
   cidr_block = "10.0.0.0/16"
+  tags = {
+    Name = "production"
+  }
 }
 
 #Create Internet Gateway
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.prod-vpc.id
 
   tags = {
-    Name = "main"
+    Name = "prod"
+  }
+}
+
+#Create custom Route Table  
+resource "aws_route_table" "prod-route-table" {
+  vpc_id = aws_vpc.prod-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+
+  route {
+    ipv6_cidr_block        = "::/0"
+    egress_only_gateway_id = aws_internet_gateway.gw.id
+  }
+
+  tags = {
+    Name = "prod"
   }
 }
