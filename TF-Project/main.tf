@@ -1,7 +1,7 @@
-resource "aws_instance" "my-first-server" {
+resource "aws_instance" "My-First-Server" {
   ami           = "ami-0dbc3d7bc646e8516"
   instance_type = "t2.micro"
-  tag = {
+  tags = {
     name = "My-First-Sever"
   }
 }
