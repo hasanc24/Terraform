@@ -9,7 +9,7 @@ terraform {
 
 provider "aws" {
   region                  = "us-east-1"
-  shared_credentials_file = "~/.aws/credentials"
+  shared_credentials_file = "~/.aws/shared_credentials_files"
   profile                 = "Terraform-IAM"
 }
 
