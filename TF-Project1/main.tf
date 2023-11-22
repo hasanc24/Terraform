@@ -144,5 +144,5 @@ resource "aws_instance" "web_server" {
 } 
 
 resource "random_string" "random" {
-  length = a
+  length = 16
 }
