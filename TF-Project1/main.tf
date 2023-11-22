@@ -142,3 +142,7 @@ resource "aws_instance" "web_server" {
     Name = "Ubuntu EC2 Server"
   }
 } 
+
+resource "random_string" "random" {
+  length = 16
+}
