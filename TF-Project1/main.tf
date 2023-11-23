@@ -144,9 +144,6 @@ resource "aws_instance" "web_server" {
   }
 }
 
-resource "random_string" "random" {
-  length = 10
-}
 
 resource "aws_instance" "web" {
   ami                    = "ami-0230bd60aa48260c6"
