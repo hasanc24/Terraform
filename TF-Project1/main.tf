@@ -160,7 +160,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_s3_bucket" "my-new-S3-bucket" {   
-  bucket = "my-new-tf-test-bucket-bryan"
+  bucket = "my-new-tf-test-bucket-hasanc"
 
   tags = {     
     Name = "My S3 Bucket"     
