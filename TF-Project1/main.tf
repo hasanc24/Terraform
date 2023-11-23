@@ -148,3 +148,13 @@ resource "random_string" "random" {
   length = 10
 }
 
+resource "aws_instance" "web" {
+  ami                    = "ami-0230bd60aa48260c6"
+  instance_type          = "t2.micro"
+  subnet_id              = "subnet-0edfa86d03a75afda"
+  vpc_security_group_ids = ["sg-00f6bf68c1101a788"]
+
+  tags = {
+    "Terraform" = "Web-Server"
+  }
+}
