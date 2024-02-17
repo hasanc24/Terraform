@@ -1,6 +1,7 @@
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
+
 }
 
 #Retrieve the list of AZs in the current AWS region
@@ -136,13 +137,35 @@ data "aws_ami" "ubuntu" {
 # Terraform Resource Block - To Build EC2 instance in Public Subnet
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.small"
+  instance_type = "t2.medium"
   subnet_id     = aws_subnet.public_subnets["public_subnet_1"].id
   tags = {
     Name = "Ubuntu EC2 Server"
   }
-} 
+}
 
-resource "random_string" "random" {
-  length = 10
+
+resource "aws_instance" "web" {
+  ami                    = "ami-0230bd60aa48260c6"
+  instance_type          = "t2.micro"
+  subnet_id              = "subnet-0edfa86d03a75afda"
+  vpc_security_group_ids = ["sg-00f6bf68c1101a788"]
+
+  tags = {
+    "Terraform" = "Web-Server"
+  }
+}
+
+resource "aws_s3_bucket" "my-new-S3-bucket" {
+  bucket = "my-new-tf-test-bucket-hasanc"
+
+  tags = {
+    Name    = "My S3 Bucket"
+    Purpose = "Intro to Resource Blocks Lab"
+  }
+}
+
+resource "aws_s3_bucket_acl" "my_new_bucket_acl" {
+  bucket = aws_s3_bucket.my-new-S3-bucket.id
+  acl    = "private"
 }
